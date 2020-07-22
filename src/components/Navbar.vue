@@ -353,7 +353,6 @@ li {
     top: 0px;
   }
 }
-
 .cartmenu {
   min-width: 400px;
 }
