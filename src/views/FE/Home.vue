@@ -245,8 +245,8 @@ export default {
   methods: {
     sendEmail () {
       const vm = this
-      const url = 'https://serieux-croissant-09871.herokuapp.com/contact/post'
-      // const temp = 'http://127.0.0.1:3000/contact/post'
+      const url = 'https://serieux-croissant-09871.herokuapp.com/post'
+      // const temp = 'http://127.0.0.1:3000/post'
       vm.$http.post(url, vm.form).then(response => {
         alert('留言已送出，我們將盡快回覆!')
       })
