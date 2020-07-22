@@ -274,7 +274,6 @@ export default {
       const vm = this
       vm.isLoading = true
       this.$http.get(api).then(response => {
-        console.log(response.data)
         vm.isLoading = false
         vm.products = response.data.products
       })
@@ -304,7 +303,6 @@ export default {
         } else {
           $('#productModal').modal('hide')
           vm.getproducts()
-          console.log('新增失敗')
         }
       })
     },
@@ -333,10 +331,8 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${id}`
       this.$http.delete(api).then(response => {
         if (response.data.success) {
-          console.log('刪除成功')
           vm.getproducts()
         } else {
-          console.log(response, '刪除失敗', vm.tempProduct.id)
         }
       })
     }

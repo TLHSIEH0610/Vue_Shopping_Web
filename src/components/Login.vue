@@ -2,9 +2,8 @@
   <div>
     <body class="text-center">
       <form class="form-signin" @submit.prevent="signin">
-        <img class="mb-4" src="" alt="" width="72" height="72" />
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
+        <h1 class="h3 mb-3 font-weight-normal">請登入帳號密碼</h1>
+        <label for="inputEmail" class="sr-only">Email</label>
         <input
           type="email"
           id="inputEmail"
@@ -24,14 +23,11 @@
           required
         />
         <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me" /> Remember me
-          </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">
-          Sign in
+          登入
         </button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+        <p class="mt-5 mb-3 text-muted">&copy; 弼丞國際印刷 @2020</p>
       </form>
     </body>
   </div>

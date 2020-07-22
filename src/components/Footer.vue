@@ -61,7 +61,10 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+h2{
+//   font-size:
+}
 .Footer {
   background-attachment: fixed;
   background-image: url(../../public/DOG.jpg);

@@ -65,7 +65,7 @@
           </div>
           <div class="modal-body">
             <div class="mt-2">
-              <label for="coupt">優惠券名稱</label>
+              <label for="coupt" class="mr-3">優惠券名稱</label>
               <input
                 type="text"
                 name=""
@@ -74,7 +74,7 @@
               />
             </div>
             <div class="mt-2">
-              <label for="coupd">折扣數(%)</label>
+              <label for="coupd" class="mr-3">折扣數(%)</label>
               <input
                 type="text"
                 name=""
@@ -83,7 +83,7 @@
               />
             </div>
             <div class="mt-2">
-              <label for="coupda">有效日期</label>
+              <label for="coupda" class="mr-3">有效日期</label>
               <input
                 type="text"
                 name=""
@@ -92,7 +92,7 @@
               />
             </div>
             <div class="mt-2">
-              <label for="coupc">優惠代碼</label>
+              <label for="coupc" class="mr-3">優惠代碼</label>
               <input
                 type="text"
                 name=""
@@ -101,7 +101,7 @@
               />
             </div>
             <div class="mt-2">
-              <label for="coupo">是否啟用</label>
+              <label for="coupo" class="mr-1">是否啟用</label>
               <input
                 type="checkbox"
                 name=""
@@ -171,11 +171,9 @@ export default {
       }
       vm.$http[httpmethod](api, { data: vm.Createcoupon }).then(response => {
         if (response.data.success) {
-          console.log('更新成功')
           $('#CouponModal').modal('hide')
           vm.GetCouponCode()
         } else {
-          console.log('更新失敗')
           $('#CouponModal').modal('hide')
           vm.GetCouponCode()
         }
@@ -185,7 +183,6 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?${page}`
       const vm = this
       vm.$http.get(api).then(response => {
-        console.log(response)
         vm.currentcoupon = response.data.coupons
       })
     },
@@ -193,7 +190,6 @@ export default {
       const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${item.id}`
       vm.$http.delete(api).then(response => {
-        console.log(response)
         vm.GetCouponCode()
       })
     }

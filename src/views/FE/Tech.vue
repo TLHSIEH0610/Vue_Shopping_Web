@@ -34,7 +34,6 @@
             <p>數位直噴印刷有別於於傳統印刷方式，無須透過其他載具印製圖案至衣物，而是將墨水直接噴印至布料成圖，不必利用網版與布料接觸印刷、或經紙與膠膜加熱印製，因此稱成衣直接列印技術(Direct To Garment Printing)，適合多色印刷。<br>
                本廠採購目前全球最受歡迎、來自以色列的工業級直噴機，不同於市面常見的桌上型直噴機種，除了適合量產，其工業級噴頭搭配獨步全球的環保墨水，不僅可百分之百生物分解，還具備優異的印刷色澤與飽和度，耐洗度通過ISO – 4級檢驗 (接近5級滿級分)，具OEKO-TEX® Standard 100安全認證，適合嬰兒皮膚接觸的無毒無害墨水<br>
             </p>
-
              <div class="frame mt-3" >
                 <div class="bg-cover w-100 mb-2" style="background-image: url(./DTG1.jpg)"></div>
                 <div class="row d-flex mt-3">
@@ -43,7 +42,6 @@
                 </div>
              </div>
             </div>
-
         </div>
     </div>
 

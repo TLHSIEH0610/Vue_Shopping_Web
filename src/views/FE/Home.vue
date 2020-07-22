@@ -201,15 +201,15 @@
       <div class="container h-100 w-100">
         <form class="justify-content-around d-flex flex-column align-items-center h-100" @submit.prevent="sendEmail">
           <h2 class="text-center">聯絡我們</h2>
-          <div class="w-100">
-              <label for="username">姓名：</label>
+          <div class="w-100 d-flex">
+              <label for="username" class="w-25">姓名：</label>
               <input class="w-100" type="text" name="username" id="username" v-model="form.username" />
           </div>
-          <div class="w-100">
-              <label for="email">電子郵件：</label>
+          <div class="w-100 d-flex">
+              <label for="email" class="w-25">電子郵件：</label>
               <input class="w-100" type="text" name="email" id="email" v-model="form.email"/>
           </div>
-          <div class="w-100">
+          <div class="w-100 d-flex">
               <textarea class="w-100" name="description" id="description" cols="30" rows="10" placeholder="請輸入訊息" v-model="form.description"></textarea>
           </div>
           <div>
@@ -247,11 +247,11 @@ export default {
       const vm = this
       const url = 'https://serieux-croissant-09871.herokuapp.com/contact/post'
       // const temp = 'http://127.0.0.1:3000/contact/post'
-      this.$http.post(url, JSON.stringify(vm.form)).then(response => {
+      vm.$http.post(url, vm.form).then(response => {
+        alert('留言已送出，我們將盡快回覆!')
       })
     }
   }
-
 }
 </script>
 

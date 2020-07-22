@@ -30,6 +30,7 @@
               <li class="nav-item text-nowrap">
                 <a
                   class="nav-link mr-3 text-dark"
+                  v-if="loginstatus"
                   href="#"
                   @click.prevent="signout"
                   >登出</a

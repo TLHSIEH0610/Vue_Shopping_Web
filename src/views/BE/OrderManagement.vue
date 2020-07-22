@@ -109,10 +109,8 @@ export default {
     getOrders (page = 1) {
       const vm = this
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/orders?page=${page}`
-
       vm.isLoading = true
       this.$http.get(url).then(response => {
-        console.log(response, '全部訂單已取得')
         if (response.data.success) {
           vm.orders = response.data.orders
         }
@@ -125,7 +123,6 @@ export default {
 
       vm.isLoading = true
       this.$http.put(url, { data: vm.tempOrder }).then(response => {
-        console.log(response, '修改訂單送出')
         $('#OrderUpdate').modal('hide')
         vm.getOrders()
         vm.isLoading = false

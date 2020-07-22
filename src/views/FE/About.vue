@@ -13,7 +13,7 @@
         我們將以最傳統的工藝結合現代的技術, 帶給您永不退色的風采.<br>
     </p>
     <h3 class="text-center mb-3 mt-5 " style="font-weight:900;color:yellow;">購物須知</h3>
-    <ul class="text-left mb-5 mt-2 ">
+    <ul class="text-left mb-5 mt-2 text-center">
         <li>訂單處理為1~3個工作天(不含假日、國定假日)，理貨完成將立即為您寄貨。</li>
         <li>為避免遺漏訊息，請多利用蝦皮聊聊，我們很樂意為您服務。</li>
         <li>商品都是全新，但是製造時難免會有些許的瑕疵，還請見諒，有問題都歡迎商討，誠信是我們的原則，謝謝。
