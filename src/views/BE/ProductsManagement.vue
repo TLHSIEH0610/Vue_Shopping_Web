@@ -27,7 +27,7 @@
             <td>
               <span v-if="item.is_enabled">啟用</span><span v-else>未啟用</span>
             </td>
-            <td class="d-flex ">
+            <td class="d-flex">
               <button class="btn btn-primary" @click="openModal(false, item)">
                 編輯
               </button>
@@ -273,7 +273,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/products/all`
       const vm = this
       vm.isLoading = true
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.isLoading = false
         vm.products = response.data.products
       })
@@ -296,7 +296,7 @@ export default {
         api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${vm.tempProduct.id}`
         httpMethod = 'put'
       }
-      this.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
+      vm.$http[httpMethod](api, { data: vm.tempProduct }).then(response => {
         if (response.data.success) {
           $('#productModal').modal('hide')
           vm.getproducts()
@@ -309,11 +309,11 @@ export default {
     uploadfile () {
       const vm = this
       vm.isLoading = true
-      const uploadfile = this.$refs.files.files[0]
+      const uploadfile = vm.$refs.files.files[0]
       const formdata = new FormData()
       formdata.append('file-to-upload', uploadfile)
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`
-      this.$http
+      vm.$http
         .post(url, formdata, {
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -329,7 +329,7 @@ export default {
     deletePD (id) {
       const vm = this
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${id}`
-      this.$http.delete(api).then(response => {
+      vm.$http.delete(api).then(response => {
         if (response.data.success) {
           vm.getproducts()
         } else {

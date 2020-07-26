@@ -1,9 +1,9 @@
 <template>
  <div>
-      <div class="my-5 row justify-content-center" v-if="cart.carts.length">
+ <div v-if="cart.carts.length" class="container">
       <div class="my-5 row justify-content-center">
-
-        <table class="table">
+      <div class="my-5 row justify-content-center up">
+        <table class="table w-75">
           <thead>
             <th></th>
             <th>品名</th>
@@ -39,7 +39,7 @@
           </tfoot>
         </table>
 
-        <div class="input-group mb-3 input-group-sm">
+        <div class="input-group mb-3 input-group-sm w-75">
           <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼" @keyup.enter="addCouponCode">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">
@@ -52,40 +52,46 @@
       </div>
     </div>
 
-  <div class="my-5 row justify-content-center" v-if="cart.carts.length">
+  <div class="my-5 row justify-content-center">
   <form class="col-md-6" @submit.prevent="createOrder">
     <div class="form-group">
+      <validation-provider rules="required" v-slot="{ errors }">
       <label for="useremail" class="mb-2">Email</label>
-      <input type="email" class="form-control" name="email" id="useremail"
-        v-model="form.user.email" placeholder="請輸入 Email" required v-validate="'required|email'">
-      <span class="text-danger">{{ errors.first('email') }}</span>
+      <input  type="email" class="form-control" name="email" id="useremail"
+        v-model="form.user.email" placeholder="請輸入 Email"><span class="text-danger">{{ errors[0] }}</span>
+      </validation-provider>
     </div>
     <div class="form-group">
+      <validation-provider rules="required" v-slot="{ errors }">
       <label for="username" class="mb-2">收件人姓名</label>
-      <input type="text" class="form-control" name="username"  :class="{'is-invalid': errors.has('name')}"
-        v-model="form.user.name" placeholder="輸入姓名" v-validate="'required|username'">
-      <span class="text-danger" v-if="errors.has('username')">{{ errors.first('username') }}</span>
+      <input type="text" class="form-control" name="username"
+        v-model="form.user.name" placeholder="輸入姓名"><span class="text-danger">{{ errors[0] }}</span>
+      </validation-provider>
     </div>
     <div class="form-group">
+      <validation-provider rules="required" v-slot="{ errors }">
       <label for="usertel" class="mb-2">收件人電話</label>
-      <input type="tel" class="form-control" id="usertel" v-model="form.user.tel" placeholder="請輸入電話" name='phone' v-validate="'required|numeric'">
-        <span class="text-danger" v-if="errors.has('phone')">{{ errors.first('phone') }}</span>
+      <input type="tel" class="form-control" id="usertel" v-model="form.user.tel" placeholder="請輸入電話" name='phone'><span class="text-danger">{{ errors[0] }}</span>
+      </validation-provider>
     </div>
     <div class="form-group">
+      <validation-provider rules="required" v-slot="{ errors }">
       <label for="useraddress" class="mb-2">收件人地址</label>
-      <input type="text" class="form-control" name="address" id="useraddress" v-model="form.user.address" v-validate="'required|text'"
-        placeholder="請輸入地址">
-      <span class="text-danger" v-if="errors.has('address')">{{ errors.first('address') }}</span>
+      <input type="text" class="form-control" name="address" id="useraddress" v-model="form.user.address"
+        placeholder="請輸入地址"><span class="text-danger">{{ errors[0] }}</span>
+      </validation-provider>
     </div>
     <div class="form-group">
       <label for="comment" class="mb-2">留言</label>
-      <textarea name="" id="comment" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
+      <textarea id="comment" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
     </div>
     <div class="text-right">
       <button class="btn btn-danger" >送出訂單</button>
     </div>
   </form>
 </div>
+ </div>
+
   <div class="my-5 row justify-content-center" v-else>
   <div class="p-4 bg-warning" style="border-radius:10px;color:red;font-size:20px;">
       <p>購物車尚無任何商品!</p> <br>
@@ -99,6 +105,7 @@
 export default {
   data () {
     return {
+      value: '',
       products: [],
       product: {},
       isLoading: false,
@@ -121,10 +128,8 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       const vm = this
       vm.isLoading = true
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.cart = response.data.data
-        console.log(response)
-        console.log(vm.cart.carts.length)
         vm.isLoading = false
       })
     },
@@ -132,7 +137,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
       const vm = this
       vm.isLoading = true
-      this.$http.delete(api).then(() => {
+      vm.$http.delete(api).then(() => {
         vm.getCart()
         vm.isLoading = false
       })
@@ -144,8 +149,7 @@ export default {
         code: vm.coupon_code
       }
       vm.isLoading = true
-      this.$http.post(url, { data: coupon }).then((response) => {
-        console.log(response.data.message)
+      vm.$http.post(url, { data: coupon }).then((response) => {
         vm.coupon_message = response.data.message
         vm.getCart()
         vm.isLoading = false
@@ -156,7 +160,7 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`
       const order = vm.form
       vm.isLoading = true
-      this.$http.post(url, { data: order }).then((response) => {
+      vm.$http.post(url, { data: order }).then((response) => {
         if (response.data.success) {
           vm.$router.push(`/customer_check/${response.data.orderId}`)
         }
@@ -169,3 +173,5 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+</style>

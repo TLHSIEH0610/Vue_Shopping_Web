@@ -1,6 +1,5 @@
 <template>
 <div class="container">
-    <h3 class="text-center mt-4" style="font-weight:900;">關於我們</h3>
     <div class="card aboutus mt-5">
     <div class="card-body">
 
@@ -12,7 +11,7 @@
         阿仁師的兒子, 台大電機系研究所畢業後, 放棄高薪科技業, 回廠設置數位印花產線, 只為服務鄉親, 用自己的雙手, 替大家用心製作每一件衣服, 透過傳統與數位印花的結合, 可提供多樣成衣印刷方案, 多種印製價格選擇, 無論量大量少, 我們都可為您服務.<br>
         我們將以最傳統的工藝結合現代的技術, 帶給您永不退色的風采.<br>
     </p>
-    <h3 class="text-center mb-3 mt-5 " style="font-weight:900;color:yellow;">購物須知</h3>
+    <h3 class="text-center mb-3 mt-5" style="font-weight:900;color:yellow;">購物須知</h3>
     <ul class="text-left mb-5 mt-2 text-center">
         <li>訂單處理為1~3個工作天(不含假日、國定假日)，理貨完成將立即為您寄貨。</li>
         <li>為避免遺漏訊息，請多利用蝦皮聊聊，我們很樂意為您服務。</li>
@@ -22,7 +21,7 @@
     出貨方式</li>
         <li>配送以台灣本島為主，偏鄉地區需另開專屬賣場，酌收部分運費，下單前請多利用聊聊與我們確認，謝謝。</li>
     </ul>
-        <img class="container-fluid" src="@/assets/hsin.jpg" alt="">
+        <img class="container-fluid" src="@/assets/image/hsin.jpg" alt="">
     </div>
     </div>
 </div>

@@ -61,8 +61,8 @@
           </div>
           <div class="modal-body">
             Email:
-            <input type="text" name="" id="" v-model="tempOrder.user.email" />
-            總價:<input type="text" name="" id="" v-model="tempOrder.total" />
+            <input type="text"  v-model="tempOrder.user.email" />
+            總價:<input type="text"  v-model="tempOrder.total" />
           </div>
           <div class="modal-footer">
             <button
@@ -110,7 +110,7 @@ export default {
       const vm = this
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/orders?page=${page}`
       vm.isLoading = true
-      this.$http.get(url).then(response => {
+      vm.$http.get(url).then(response => {
         if (response.data.success) {
           vm.orders = response.data.orders
         }
@@ -122,7 +122,7 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/order/${vm.tempOrder.id}`
 
       vm.isLoading = true
-      this.$http.put(url, { data: vm.tempOrder }).then(response => {
+      vm.$http.put(url, { data: vm.tempOrder }).then(response => {
         $('#OrderUpdate').modal('hide')
         vm.getOrders()
         vm.isLoading = false

@@ -8,14 +8,14 @@
             class="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#navbarToggler"
-            aria-controls="navbarToggler"
+            data-target="#navbarTogglerf"
+            aria-controls="navbarTogglerf"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarToggler">
+          <div class="collapse navbar-collapse" id="navbarTogglerf">
             <ul
               class="navbar-nav  px-3 ml-auto d-flex flex-row justify-content-end"
             >
@@ -74,7 +74,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="container">
         <router-link to="/" class="navbar-brand" href="#">
-          <img class="logo" src="@/assets/e_painter2.png" alt="" />
+          <img class="logo" src="@/assets/image/e_painter2.png" alt="" />
         </router-link>
         <button
           class="navbar-toggler"
@@ -187,7 +187,7 @@
                 <router-link
                   class="btn btn-danger"
                   style="width:200px; margin: 0,auto;"
-                  to="/customer_payment"
+                  to="/ProductsPayment"
                 >
                   結帳
                 </router-link>
@@ -225,7 +225,7 @@ export default {
     signout () {
       const vm = this
       const url = `${process.env.VUE_APP_APIPATH}/logout`
-      this.$http.post(url).then(response => {
+      vm.$http.post(url).then(response => {
         if (response.data.success) {
           vm.$router.push('/login')
         }
@@ -235,7 +235,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       const vm = this
       vm.isLoading = true
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.cart = response.data.data
         vm.cartlength = response.data.data.carts.length
         vm.isLoading = false
@@ -245,7 +245,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
       const vm = this
       vm.isLoading = true
-      this.$http.delete(api).then(() => {
+      vm.$http.delete(api).then(() => {
         vm.getCart()
         vm.isLoading = false
       })
@@ -253,7 +253,7 @@ export default {
     signinCheck () {
       const api = `${process.env.VUE_APP_APIPATH}/api/user/check`
       const vm = this
-      this.$http.post(api).then(response => {
+      vm.$http.post(api).then(response => {
         vm.loginstatus = response.data.success
       })
     },

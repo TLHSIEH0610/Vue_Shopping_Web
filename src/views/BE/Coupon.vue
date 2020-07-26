@@ -50,7 +50,7 @@
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header bg-primary text-light ">
+          <div class="modal-header bg-primary text-light">
             <h5 class="modal-title text-xl-center" id="exampleModalLabel">
               優惠券管理
             </h5>
@@ -155,7 +155,7 @@ export default {
       const vm = this
       if (isnew) {
         vm.Createcoupon = {}
-        this.isNew = true
+        vm.isNew = true
       } else {
         vm.Createcoupon = Object.assign({}, item)
         vm.isNew = false

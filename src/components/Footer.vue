@@ -7,7 +7,7 @@
       >
         <div class="row w-100">
           <div class="col-md-6 col-sm-12 p-5 footword fl" style="">
-            <div class="title" style="font-size:70px;">Contact</div>
+            <div class="title">Contact</div>
             <ul class="d-flex flex-column justify-content-around mt-2">
               <li class="mt-3">
                 <i class="fas fa-map-marker-alt fa-2x"></i>
@@ -24,7 +24,7 @@
             </ul>
           </div>
           <div class="col-md-6 col-sm-12 p-5 footword fr" style="">
-            <div class="title" style="font-size:70px">Follow</div>
+            <div class="title">Follow</div>
             <div class="icon">
               <a
                 href="https://www.facebook.com/HsinchuTprint/?ref=page_internal"
@@ -93,6 +93,7 @@ h2{
 @media (max-width: 768px) {
   .footword {
     // width:autso;
+    font-size:16px;
     &.fl {
       width: 100%;
       margin-top: 30px;
@@ -103,6 +104,9 @@ h2{
       margin-top: 30px;
       height: auto;
       border-radius: 15%;
+    }
+    .title{
+      font-size:45px;
     }
   }
 }

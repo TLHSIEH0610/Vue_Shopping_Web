@@ -83,7 +83,7 @@ export default new VueRouter({
         },
         {
           name: 'ProductsPayment',
-          path: 'ProductsPaymentt',
+          path: 'ProductsPayment',
           component: ProductsPayment
         }
       ]

@@ -34,6 +34,7 @@
                   href="#"
                   class=" text-dark bg-warning p-2 font-weight-bold"
                   style="border-radius:15px;font-size:15px;"
+                   @click.prevent="getproduct(item.id)"
                   >{{ item.title }}</a
                 >
               </h5>
@@ -116,17 +117,18 @@
               </footer>
             </blockquote>
             <div class="d-flex justify-content-between align-items-baseline">
-              <div class="h4" v-if="!product.price">
-                {{ product.origin_price }} 元
-              </div>
               <del class="h6" v-if="product.price"
                 >原價: {{ product.origin_price }} 元</del
               >
+              <div class="h4" v-else>
+                {{ product.origin_price }} 元
+              </div>
               <div class="h4 text-danger font-weight-bold" v-if="product.price">
                 現在只要: {{ product.price }} 元
               </div>
             </div>
-            <select name="" class="form-control mt-3" v-model="product.num">
+            <select name="" class="form-control mt-3" v-model="product.num" autocomplete="off">
+              <option disabled selected="selected">請選擇數目</option>
               <option :value="num" v-for="num in 10" :key="num">
                 選購 {{ num }} {{ product.unit }}
               </option>
@@ -233,7 +235,7 @@ export default {
       const vm = this
       vm.pagination.currentPage = page
       vm.isLoading = true
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.isLoading = false
         vm.cateProduct = vm.pgpd = vm.products = response.data.products
         vm.pgpd = []
@@ -283,7 +285,7 @@ export default {
     selectcategory (cate) {
       const vm = this
       if (cate === '全部商品') {
-        this.getproducts2()
+        vm.getproducts2()
       } else {
         vm.pgpd = []
         vm.cateProduct = vm.products.filter(item => {
@@ -302,19 +304,19 @@ export default {
       }
       vm.status.fileUploading = true
       vm.addtocartLoading = true
-      this.$http.post(api, { data: cart }).then(response => {
+      vm.$http.post(api, { data: cart }).then(response => {
         vm.getCart()
         $('#productModal').modal('hide')
         vm.status.fileUploading = false
         vm.addtocartLoading = false
-        vm.$bus.$emit('message:push', '加入成功', 'warning')
+        vm.$bus.$emit('message:push', '加入成功', 'success')
       })
     },
     getCart () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       const vm = this
       vm.isLoading = true
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.cart = response.data.data
         vm.$bus.$emit('CartNum', vm.cart)
         vm.isLoading = false
@@ -324,7 +326,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
       const vm = this
       vm.status.fileUploading = true
-      this.$http.get(api).then(response => {
+      vm.$http.get(api).then(response => {
         vm.product = response.data.product
         $('#productModal').modal('show')
         vm.status.fileUploading = false
@@ -334,7 +336,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
       const vm = this
       vm.isLoading = true
-      this.$http.delete(api).then(() => {
+      vm.$http.delete(api).then(() => {
         vm.getCart()
         vm.isLoading = false
       })

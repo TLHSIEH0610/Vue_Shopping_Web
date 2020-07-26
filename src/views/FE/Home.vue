@@ -45,7 +45,7 @@
             alt="..."
             style="background-image:url(./top3.jpg);"
           ></div>
-          <div class="carousel-caption  banworld">
+          <div class="carousel-caption banworld">
             <h2>各式專業技術</h2>
             <p>
              領先業界的先進機台，無論刺繡或印刷，都能快速交貨。
@@ -81,7 +81,7 @@
           <router-link to="/customer_order">
             <div class="card" style="width: 18rem;">
               <img
-                src="@/assets/pdshirt.jpg"
+                src="@/assets/image/pdshirt.jpg"
                 class="card-img-top"
                 alt="..."
               />
@@ -100,7 +100,7 @@
           <router-link to="/customer_order">
                 <div class="card" style="width: 18rem;">
             <img
-              src="@/assets/colorT.jpg"
+              src="@/assets/image/colorT.jpg"
               class="card-img-top"
               alt="..."
               style="height:380px;"
@@ -120,7 +120,7 @@
           <router-link to="/customer_order">
                 <div class="card" style="width: 18rem;">
             <img
-              src="@/assets/pdsew.jpg"
+              src="@/assets/image/pdsew.jpg"
               class="card-img-top"
               alt="..."
               style="height:380px;"
@@ -180,17 +180,15 @@
           <p class="mt-4" style="color:yellow">30% OFF!</p>
           <p class="text-white mt-4">優惠代碼: <span style="color:red">SummerSpring</span></p>
        </div>
-
    </div>
 
 <!--聯絡我們-->
-
   <!--line-->
 <div class="container " style="margin-top: 50px;">
   <div class="row d-flex justify-content-around">
     <div class="col-md-6 col-sm-12">
       <div class="card w-75 ml-auto mr-auto">
-      <img src="@/assets/linepattern.png" class="card-img-top" alt="...">
+      <img src="@/assets/image/linepattern.png" class="card-img-top" alt="...">
       <div class="card-body">
         <p class="card-text">掃描或點擊QRcode加入好友 <br>Line ID: leo20140226</p>
       </div>
@@ -198,19 +196,28 @@
     </div>
     <!--留言-->
     <div class="col-md-6 col-sm-12">
-      <div class="container h-100 w-100">
-        <form class="justify-content-around d-flex flex-column align-items-center h-100" @submit.prevent="sendEmail">
+      <div class="container h-100 w-100 mt-3">
+        <form class="justify-content-around d-flex flex-column h-100" @submit.prevent="sendEmail">
           <h2 class="text-center">聯絡我們</h2>
-          <div class="w-100 d-flex">
-              <label for="username" class="w-25">姓名：</label>
-              <input class="w-100" type="text" name="username" id="username" v-model="form.username" />
+          <div class="w-100 d-flex contact form-group">
+          <validation-provider rules="required" v-slot="{ errors }">
+              <label for="username" class="">姓名：</label>
+              <input class="form-control" type="text" name="username" id="username" v-model="form.username" />
+              <p class="text-danger">{{ errors[0] }}</p>
+          </validation-provider>
           </div>
-          <div class="w-100 d-flex">
-              <label for="email" class="w-25">電子郵件：</label>
-              <input class="w-100" type="text" name="email" id="email" v-model="form.email"/>
+          <div class="w-100 d-flex contact form-group">
+          <validation-provider rules="required" v-slot="{ errors }">
+              <label for="email" class="">電子郵件：</label>
+              <input class="form-control" type="text" name="email" id="email" v-model="form.email"/>
+              <p class="text-danger">{{ errors[0] }}</p>
+          </validation-provider>
           </div>
-          <div class="w-100 d-flex">
-              <textarea class="w-100" name="description" id="description" cols="30" rows="10" placeholder="請輸入訊息" v-model="form.description"></textarea>
+          <div class="w-100 d-flex contact form-group">
+          <validation-provider rules="required" v-slot="{ errors }">
+              <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="請輸入訊息" v-model="form.description"></textarea>
+              <p class="text-danger">{{ errors[0] }}</p>
+          </validation-provider>
           </div>
           <div>
               <input type="submit" value="送出訊息" />
@@ -323,6 +330,12 @@ p{
 
   }
   .carousel-caption{
+  }
+}
+
+@media(max-width:786px){
+  .contact{
+    margin-top:8px;
   }
 }
 </style>
