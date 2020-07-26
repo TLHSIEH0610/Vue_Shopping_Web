@@ -3,7 +3,7 @@
 <img src="https://camo.githubusercontent.com/d2bfd2829384add8c37caeece28ea39e742b357d/68747470733a2f2f696d6167697a65722e696d616765736861636b2e636f6d2f696d673932342f363332392f6c58643264542e706e67" width="300">
 
 # 作品介紹
-## 結合在地印刷廠，製作網路行銷網站
+## 結合在地印刷廠，製作網路行銷網站 https://tlhsieh0610.github.io/Vue_Shopping_Web/#/
 
 **網站功能**
 
