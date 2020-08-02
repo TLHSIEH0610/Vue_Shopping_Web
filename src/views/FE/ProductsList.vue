@@ -128,7 +128,7 @@
               </div>
             </div>
             <select name="" class="form-control mt-3" v-model="product.num" autocomplete="off">
-              <option disabled selected="selected">請選擇數目</option>
+              <option disabled selected>請選擇數目</option>
               <option :value="num" v-for="num in 10" :key="num">
                 選購 {{ num }} {{ product.unit }}
               </option>
@@ -237,7 +237,7 @@ export default {
       vm.isLoading = true
       vm.$http.get(api).then(response => {
         vm.isLoading = false
-        vm.cateProduct = vm.pgpd = vm.products = response.data.products
+        vm.cateProduct = vm.products = response.data.products
         vm.pgpd = []
         vm.paginationPage()
       })
@@ -296,21 +296,41 @@ export default {
       }
     },
     addtoCart (id, qty = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      const vm = this
-      const cart = {
-        product_id: id,
-        qty
-      }
-      vm.status.fileUploading = true
-      vm.addtocartLoading = true
-      vm.$http.post(api, { data: cart }).then(response => {
-        vm.getCart()
-        $('#productModal').modal('hide')
-        vm.status.fileUploading = false
-        vm.addtocartLoading = false
-        vm.$bus.$emit('message:push', '加入成功', 'success')
-      })
+      this.getCart()
+      setTimeout(() => {
+        const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+        const vm = this
+        const target = vm.cart.carts.filter(items => items.product_id === id)
+        console.log(target)
+        if (target.length > 0) {
+          const deleteid = target[0].id
+          const deleteapi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${deleteid}`
+          const originqty = target[0].qty
+          console.log('重複')
+          qty = qty + originqty
+          vm.$http.delete(deleteapi).then(() => {
+            vm.getCart()
+          })
+        } else {
+          console.log('新的')
+          qty = 1
+        }
+        //
+        const cart = {
+          product_id: id,
+          qty
+        }
+        vm.status.fileUploading = true
+        vm.addtocartLoading = true
+        vm.$http.post(api, { data: cart }).then(response => {
+          vm.getCart()
+          // vm.$bus.$emit('CartNum', vm.cart)
+          $('#productModal').modal('hide')
+          vm.status.fileUploading = false
+          vm.addtocartLoading = false
+          vm.$bus.$emit('message:push', '加入成功', 'success')
+        })
+      }, 1000)
     },
     getCart () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
@@ -318,6 +338,7 @@ export default {
       vm.isLoading = true
       vm.$http.get(api).then(response => {
         vm.cart = response.data.data
+        console.log(vm.cart.carts)
         vm.$bus.$emit('CartNum', vm.cart)
         vm.isLoading = false
       })
@@ -330,15 +351,6 @@ export default {
         vm.product = response.data.product
         $('#productModal').modal('show')
         vm.status.fileUploading = false
-      })
-    },
-    removeCartItem (id) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
-      const vm = this
-      vm.isLoading = true
-      vm.$http.delete(api).then(() => {
-        vm.getCart()
-        vm.isLoading = false
       })
     }
   },

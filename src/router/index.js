@@ -52,7 +52,7 @@ export default new VueRouter({
       ]
     },
     {
-      name: 'Dashboard',
+      name: '',
       path: '/',
       component: Dashboard,
       children: [

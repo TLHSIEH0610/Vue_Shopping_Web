@@ -238,12 +238,14 @@ export default {
       vm.$http.get(api).then(response => {
         vm.cart = response.data.data
         vm.cartlength = response.data.data.carts.length
+        console.log(vm.cart.carts)
         vm.isLoading = false
       })
     },
     removeCartItem (id) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
       const vm = this
+      console.log(id)
       vm.isLoading = true
       vm.$http.delete(api).then(() => {
         vm.getCart()
